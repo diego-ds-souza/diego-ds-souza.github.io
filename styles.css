@@ -173,3 +173,38 @@ footer.site small{ color:#a9bdae; }
   .menu{ gap:16px; }
   body{ font-size:17px; }
 }
+
+/* ===== additions: hero banner, split layouts, gallery, lightbox, CV button ===== */
+
+/* top banner photo on home */
+.hero-banner{ margin:24px 0 8px; }
+.hero-banner img{ width:100%; height:360px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow); }
+@media (max-width:760px){ .hero-banner img{ height:220px; } }
+
+/* CV chip (distinct accent) */
+.chip.cv{ background:var(--bronze); color:#fff; border-color:var(--bronze); }
+.chip.cv:hover{ background:var(--bronze-2); color:#fff; }
+
+/* two-column project layout: text beside media */
+.split{ display:flex; gap:36px; align-items:flex-start; }
+.split .body{ flex:1 1 55%; }
+.split .media{ flex:1 1 45%; display:flex; flex-direction:column; gap:14px; margin-top:6px; }
+.split .media img{ width:100%; border-radius:4px; box-shadow:var(--shadow); }
+.split .media figcaption{ font-size:.85rem; color:var(--ink-soft); margin-top:6px; font-style:italic; }
+@media (max-width:760px){ .split{ flex-direction:column; gap:18px; } .split .media{ flex-basis:auto; } }
+
+/* equal-height image pair (e.g., twig girdled + girdling) */
+.figs.equal .fig img{ height:300px; object-fit:cover; }
+@media (max-width:760px){ .figs.equal .fig img{ height:240px; } }
+
+/* gallery: three per row */
+.grid{ grid-template-columns:repeat(3,1fr); }
+@media (max-width:760px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:460px){ .grid{ grid-template-columns:1fr; } }
+.grid .card{ cursor:zoom-in; }
+
+/* lightbox */
+.lightbox{ position:fixed; inset:0; background:rgba(15,20,16,.93); display:none; align-items:center; justify-content:center; z-index:100; padding:30px; cursor:zoom-out; }
+.lightbox.open{ display:flex; }
+.lightbox img{ max-width:94%; max-height:88%; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,.5); background:#000; }
+.lightbox .cap{ position:absolute; left:0; right:0; bottom:18px; text-align:center; color:#e8e3d6; font-size:.9rem; padding:0 24px; }
