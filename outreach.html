@@ -72,6 +72,9 @@
   </section>
 </main>
 
+<!-- Lightbox overlay (click any photo to enlarge) -->
+<div class="lightbox" id="lightbox"><img alt=""><div class="cap"></div></div>
+
 <footer class="site">
   <div class="wrap">
     <small>© <span id="yr"></span> Diego de Santana Souza</small>
@@ -84,5 +87,24 @@
   </div>
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  (function(){
+    var lb = document.getElementById('lightbox');
+    var lbImg = lb.querySelector('img');
+    var lbCap = lb.querySelector('.cap');
+    document.querySelectorAll('.grid .card img').forEach(function(img){
+      img.addEventListener('click', function(){
+        // load the full-resolution original from Wix (no square crop)
+        var m = img.src.match(/\/media\/([^/]+)\//);
+        lbImg.src = m ? 'https://static.wixstatic.com/media/' + m[1] : img.src;
+        var fc = img.closest('figure').querySelector('figcaption');
+        lbCap.textContent = fc ? fc.textContent : '';
+        lb.classList.add('open');
+      });
+    });
+    lb.addEventListener('click', function(){ lb.classList.remove('open'); lbImg.src=''; });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') lb.classList.remove('open'); });
+  })();
+</script>
 </body>
 </html>
